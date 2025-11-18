@@ -276,9 +276,25 @@ NO* removerArvore(NO* no, int valor) {
     else {
         // Passo 3: Nó encontrado! Agora identifique qual caso de remoção aplicar
         
+        /* ========== FEITO ========== */
         /* ========== CASO 1: Nó sem filhos (Folha) ========== */
         // Condição: verificar se ambos os ponteiros esquerdo e direito são NULL
         // Ação: libere a memória do nó e retorne NULL para o pai
+        if (no->esq == NULL && no->dir == NULL) {
+            free(no); 
+            return NULL;
+        }
+        
+        else if (no->esq != NULL && no->dir == NULL) {
+            NO* aux = no->esq;
+            free(no);
+            return aux;
+        }
+        else if (no->dir != NULL && no->esq == NULL) {
+            NO* aux = no->dir;
+            free(no);
+            return aux;
+        }
      
         
         /* ========== CASO 2: Nó com apenas um filho ========== */
@@ -286,7 +302,7 @@ NO* removerArvore(NO* no, int valor) {
         // Condição: verificar se o ponteiro esquerdo é NULL
         // Ação: armazene o ponteiro do filho direito em uma variável temporária,
         //       libere o nó atual e retorne o ponteiro do filho direito
-        /
+    
         
         // Subcaso 2b: Apenas filho esquerdo existe (direita é NULL)
         // Condição: verificar se o ponteiro direito é NULL
